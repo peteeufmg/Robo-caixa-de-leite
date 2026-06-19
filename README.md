@@ -8,6 +8,10 @@ O robô é construído sobre um chassi de papelão, inspirado em caixa de leite,
 
 O circuito opera como um detector de som: o microfone de eletreto capta o grito ou ruído ambiente e converte a pressão sonora em um sinal elétrico fraco. Esse sinal entra em um amplificador baseado no LM741, onde é amplificado e condicionado. Em seguida, transistores fazem a chaveamento do motor DC, permitindo que a energia da bateria 9V seja dirigida ao motor apenas quando o som ultrapassa um limiar definido pelo potenciômetro. Assim, o carrinho permanece parado em silêncio e avança quando um som forte é detectado.
 
+![Circuito do robô movido a som](img/circuito.png)
+
+![Protótipo montado sobre chassi de caixa de leite](img/protótipo.png)
+
 O funcionamento básico é:
 - o microfone capta o som;
 - o sinal de áudio é amplificado pelo circuito;
