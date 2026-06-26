@@ -303,7 +303,7 @@ As quatro melhorias abaixo foram selecionadas para os próximos ciclos de desenv
 | Componentes adicionais | CI LM3915, 8 LEDs 3 mm (verde/amarelo/vermelho), resistor de 1 kΩ |
 | Ponto de conexão | Saída do LM741 (pino 6) → entrada do LM3915 |
 | Tensão de referência | Ajustável via resistor externo ao LM3915 |
-| Custo estimado | R$ 8–15 (LM3915 + LEDs) |
+
 
 ---
 
@@ -318,7 +318,7 @@ As quatro melhorias abaixo foram selecionadas para os próximos ciclos de desenv
 | Componentes adicionais | CI L293D (H-bridge), LM358 (2 op-amps para os filtros), capacitores e resistores para os filtros RC |
 | Canal de graves | Filtro passa-baixa com fc ≈ 300 Hz → motor gira no sentido reverso |
 | Canal de agudos | Filtro passa-alta com fc ≈ 1 kHz → motor gira para frente |
-| Custo estimado | R$ 12–20 (L293D + LM358 + passivos) |
+
 
 > **Nota de projeto:** o LM358 opera com alimentação simples (single-supply) de 3V a 32V, sendo mais adequado que o LM741 para esta etapa. Considerar substituir o LM741 do circuito base ao implementar esta melhoria.
 
@@ -338,7 +338,7 @@ As quatro melhorias abaixo foram selecionadas para os próximos ciclos de desenv
 | Software de modelagem | Fusion 360, FreeCAD ou Tinkercad (gratuito para estudantes) |
 | Encaixes previstos | Motor DC traseiro, eixo dianteiro, protoboard superior, chave e conector de bateria |
 | Configuração de impressão | 20% infill, camada 0,2 mm, sem suporte (design orientado à impressão) |
-| Custo estimado | R$ 8–15 por chassi (filamento PLA) |
+
 
 ---
 
@@ -361,7 +361,7 @@ As quatro melhorias abaixo foram selecionadas para os próximos ciclos de desenv
 | Material adicional | Fita isolante colorida (3 cores) ou 3 mini-protoboards de 170 pontos |
 | Pontos de medição sugeridos | Saída do microfone, pino 6 do LM741, base do 2N3904, terminal do motor |
 | Benefício imediato | Diagnóstico de falha em < 2 minutos com multímetro |
-| Custo estimado | R$ 0 (fita isolante) a R$ 15 (3 mini-protoboards) |
+
 
 ---
 
