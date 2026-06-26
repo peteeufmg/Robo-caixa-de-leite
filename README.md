@@ -287,7 +287,7 @@ As quatro melhorias abaixo foram selecionadas para os próximos ciclos de desenv
 |:---:|---|:---:|:---:|:---:|:---:|
 | F1 | VU Meter — barra de LEDs de intensidade sonora | Circuito | Baixa | Alto | Planejado |
 | F2 | Controle direcional por frequência sonora | Circuito | Alta | Alto | Planejado |
-| F3 | Chassi em MDF cortado a laser | Estrutura / Design | Média | Médio | Planejado |
+| F3 | Chassi impresso em 3D | Estrutura / Design | Média | Médio | Planejado |
 | F4 | Reorganização do protoboard em blocos funcionais | Didática / Montagem | Baixa | Alto | Planejado |
 
 ---
@@ -324,20 +324,21 @@ As quatro melhorias abaixo foram selecionadas para os próximos ciclos de desenv
 
 ---
 
-### F3 — Chassi em MDF Cortado a Laser
+### F3 — Chassi Impresso em 3D
 
-**O que muda:** o chassi de caixa de leite é reproduzido em **MDF de 3 mm** com corte a laser, mantendo o formato e a estética original (incluindo a silhueta da caixa de leite gravada na lateral). O resultado é um chassi rígido, reproducível em série e com encaixes precisos para motor, eixos e protoboard — sem cola ou improvisos.
+**O que muda:** o chassi de caixa de leite é reproduzido em **PLA impresso em 3D**, mantendo o formato e a estética original da caixa de leite. O resultado é um chassi rígido, leve, reproducível em série e com encaixes milimétricos para motor, eixos, protoboard e bateria — sem cola ou improvisos.
 
-**Por que fazer:** o papelão funciona para provas de conceito, mas dobra, molha e varia entre protótipos. Com o arquivo de corte (DXF/SVG) versionado no repositório, qualquer edição do PETEE pode fabricar uma nova unidade em minutos usando a cortadora a laser da universidade.
+**Por que fazer:** o papelão funciona para provas de conceito, mas dobra, molha e varia entre protótipos. Com o arquivo 3D (STL/STEP) versionado no repositório, qualquer edição do PETEE pode imprimir uma nova unidade usando as impressoras disponíveis na universidade. A impressão 3D também permite iterar rapidamente no design sem custo adicional de ferramental.
 
 | Item | Detalhe |
 |---|---|
-| Material | MDF 3 mm (folha 30×40 cm é suficiente para 1 chassi) |
-| Ferramental | Cortadora a laser (disponível no laboratório da UFMG) |
-| Arquivo de projeto | DXF / SVG a ser criado e versionado no repositório |
+| Material | PLA (recomendado) ou PETG para maior resistência mecânica |
+| Ferramental | Impressora 3D FDM (disponível no laboratório da UFMG) |
+| Arquivo de projeto | STL / STEP a ser modelado e versionado no repositório |
+| Software de modelagem | Fusion 360, FreeCAD ou Tinkercad (gratuito para estudantes) |
 | Encaixes previstos | Motor DC traseiro, eixo dianteiro, protoboard superior, chave e conector de bateria |
-| Acabamento sugerido | Pintura com spray ou envernizamento para resistência à umidade |
-| Custo estimado | R$ 5–10 por chassi (material + corte) |
+| Configuração de impressão | 20% infill, camada 0,2 mm, sem suporte (design orientado à impressão) |
+| Custo estimado | R$ 8–15 por chassi (filamento PLA) |
 
 ---
 
