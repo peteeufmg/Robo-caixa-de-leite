@@ -23,7 +23,7 @@ Desenvolvido pelo **PETEE-UFMG** em parceria com o **OptmaLab**.
 7. [Montagem Passo a Passo](#montagem-passo-a-passo)
 8. [Testes e Calibração](#testes-e-calibração)
 9. [Manutenção](#manutenção)
-10. [Evolução do Projeto](#evolução-do-projeto)
+10. [Roadmap de Melhorias](#roadmap-de-melhorias)
 11. [Guia do Facilitador](#guia-do-facilitador)
 12. [Referências](#referências)
 
@@ -277,25 +277,90 @@ Esta seção destina-se a monitores, técnicos e facilitadores responsáveis pel
 
 ---
 
-## Evolução do Projeto
+## Roadmap de Melhorias
 
-As melhorias abaixo estão organizadas por nível de dificuldade, servindo como desafios progressivos para alunos.
+As quatro melhorias abaixo foram selecionadas para os próximos ciclos de desenvolvimento do projeto. Cada uma agrega valor pedagógico, didático ou de durabilidade ao protótipo atual.
 
-### Nível Iniciante
-- Adicionar um segundo LED colorido que pisca enquanto o motor está ativo
-- Modificar o chassi com decoração personalizada (tinta, adesivos)
-- Experimentar diferentes tipos de microfone e comparar a sensibilidade
+### Visão Geral
 
-### Nível Intermediário
-- Substituir o LM741 pelo **LM358** (mais moderno, single-supply, menor offset): permite alimentação simples de 5V–15V
-- Adicionar um **filtro passa-baixa** (RC) na entrada para reduzir ruídos elétricos de alta frequência
-- Incluir um **capacitor eletrolítico** de 10 µF em paralelo com o motor para suprimir a faísca de comutação
+| # | Melhoria | Área | Complexidade | Impacto Pedagógico | Status |
+|:---:|---|:---:|:---:|:---:|:---:|
+| F1 | VU Meter — barra de LEDs de intensidade sonora | Circuito | Baixa | Alto | Planejado |
+| F2 | Controle direcional por frequência sonora | Circuito | Alta | Alto | Planejado |
+| F3 | Chassi em MDF cortado a laser | Estrutura / Design | Média | Médio | Planejado |
+| F4 | Reorganização do protoboard em blocos funcionais | Didática / Montagem | Baixa | Alto | Planejado |
 
-### Nível Avançado
-- Implementar controle direcional com dois motores e dois microfones (um para cada lado)
-- Adicionar um **Arduino Nano** para processar o sinal do microfone via ADC e implementar lógica mais complexa (parar após 3 segundos, detectar frequência específica)
-- Reprojetar o chassi em **impressão 3D** para maior resistência e precisão dimensional
-- Produzir uma **PCB customizada** no KiCad para eliminar o protoboard
+---
+
+### F1 — VU Meter: Barra de LEDs de Intensidade Sonora
+
+**O que muda:** o único LED indicador atual é substituído por uma barra de 8 LEDs controlada pelo CI LM3915, que acende progressivamente conforme o volume captado pelo microfone. O público e os alunos visualizam em tempo real a intensidade do som antes de o motor ser acionado.
+
+**Por que fazer:** torna visível o conceito de sinal analógico — a barra mostra que o som é uma grandeza contínua, não binária. É o gancho perfeito para explicar conversão analógico-digital em aulas mais avançadas.
+
+| Item | Detalhe |
+|---|---|
+| Componentes adicionais | CI LM3915, 8 LEDs 3 mm (verde/amarelo/vermelho), resistor de 1 kΩ |
+| Ponto de conexão | Saída do LM741 (pino 6) → entrada do LM3915 |
+| Tensão de referência | Ajustável via resistor externo ao LM3915 |
+| Custo estimado | R$ 8–15 (LM3915 + LEDs) |
+
+---
+
+### F2 — Controle Direcional por Frequência Sonora
+
+**O que muda:** em vez de o motor girar apenas para frente, o carrinho interpreta a **frequência** do som para definir a direção. Um som grave (< 300 Hz, como um "hum" ou bater de pé) aciona o motor no sentido reverso; um som agudo (> 1 kHz, como um grito ou apito) aciona o motor para frente. Um CI H-Bridge L293D substitui os transistores como driver do motor, permitindo inversão de polaridade.
+
+**Por que fazer:** introduz o conceito de filtros passa-banda e multiplexação de canais. O carrinho deixa de ser um simples detector de amplitude e passa a reconhecer *características* do som — um salto conceitual importante rumo ao processamento de sinais.
+
+| Item | Detalhe |
+|---|---|
+| Componentes adicionais | CI L293D (H-bridge), LM358 (2 op-amps para os filtros), capacitores e resistores para os filtros RC |
+| Canal de graves | Filtro passa-baixa com fc ≈ 300 Hz → motor gira no sentido reverso |
+| Canal de agudos | Filtro passa-alta com fc ≈ 1 kHz → motor gira para frente |
+| Custo estimado | R$ 12–20 (L293D + LM358 + passivos) |
+
+> **Nota de projeto:** o LM358 opera com alimentação simples (single-supply) de 3V a 32V, sendo mais adequado que o LM741 para esta etapa. Considerar substituir o LM741 do circuito base ao implementar esta melhoria.
+
+---
+
+### F3 — Chassi em MDF Cortado a Laser
+
+**O que muda:** o chassi de caixa de leite é reproduzido em **MDF de 3 mm** com corte a laser, mantendo o formato e a estética original (incluindo a silhueta da caixa de leite gravada na lateral). O resultado é um chassi rígido, reproducível em série e com encaixes precisos para motor, eixos e protoboard — sem cola ou improvisos.
+
+**Por que fazer:** o papelão funciona para provas de conceito, mas dobra, molha e varia entre protótipos. Com o arquivo de corte (DXF/SVG) versionado no repositório, qualquer edição do PETEE pode fabricar uma nova unidade em minutos usando a cortadora a laser da universidade.
+
+| Item | Detalhe |
+|---|---|
+| Material | MDF 3 mm (folha 30×40 cm é suficiente para 1 chassi) |
+| Ferramental | Cortadora a laser (disponível no laboratório da UFMG) |
+| Arquivo de projeto | DXF / SVG a ser criado e versionado no repositório |
+| Encaixes previstos | Motor DC traseiro, eixo dianteiro, protoboard superior, chave e conector de bateria |
+| Acabamento sugerido | Pintura com spray ou envernizamento para resistência à umidade |
+| Custo estimado | R$ 5–10 por chassi (material + corte) |
+
+---
+
+### F4 — Reorganização do Protoboard em Blocos Funcionais
+
+**O que muda:** sem trocar nenhum componente, a montagem no protoboard é **reorganizada em três zonas físicas** claramente delimitadas por fita colorida ou mini-protoboards separados. Cada zona corresponde a um bloco funcional do circuito:
+
+```
+┌──────────────────────────────────────────────────────┐
+│  [  CAPTAÇÃO  ]  →  [ AMPLIFICAÇÃO ]  →  [ACIONAMENTO]│
+│  Microfone + R      LM741 + pot.        Transistores  │
+│  Fita AZUL          Fita AMARELA        Fita VERMELHA │
+└──────────────────────────────────────────────────────┘
+```
+
+**Por que fazer:** o aluno consegue usar o multímetro para medir a tensão entre cada bloco e *ver* o sinal crescendo etapa a etapa — de milivolts no microfone até volts na saída do LM741. Transforma a montagem de uma tarefa mecânica em uma experiência de diagnóstico ativo. Também facilita substituição de componentes: o monitor sabe exatamente em qual zona procurar uma falha.
+
+| Item | Detalhe |
+|---|---|
+| Material adicional | Fita isolante colorida (3 cores) ou 3 mini-protoboards de 170 pontos |
+| Pontos de medição sugeridos | Saída do microfone, pino 6 do LM741, base do 2N3904, terminal do motor |
+| Benefício imediato | Diagnóstico de falha em < 2 minutos com multímetro |
+| Custo estimado | R$ 0 (fita isolante) a R$ 15 (3 mini-protoboards) |
 
 ---
 
